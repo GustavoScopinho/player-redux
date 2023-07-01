@@ -1,9 +1,15 @@
+import { Provider } from "react-redux/es/exports"
+import { Player } from "./components/Player"
+import { store } from "./store"
 
 function App() {
   
   return (
     <>
-        <h1>Player</h1>
+      <Provider store={store}>
+        <Player/>
+      </Provider>
+        
     </>
   )
 }
