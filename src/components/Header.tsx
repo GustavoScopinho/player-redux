@@ -1,9 +1,20 @@
+import { useAppSelector } from "../store"
+
 export function Header() {
+  const {currentLesson, currentModule} = useAppSelector(state => {
+    const { currentModuleIndex, currentLessonIndex } = state.player
+
+    const currentModule = state.player.course.modules[currentModuleIndex]
+    const currentLesson = currentModule.lessons[currentLessonIndex]
+
+    return {currentLesson, currentModule}
+  })
+
   return (
     <>
         <div className="flex flex-col gap-1">
-            <h1 className="text-2x1 font-bold">Fundamentos do Redux</h1>
-            <span className="text-sm text-zinc-400">Módulo "Desvendando o Redux"</span>
+            <h1 className="text-2x1 font-bold">{currentLesson.title}</h1>
+            <span className="text-sm text-zinc-400">Módulo "{currentModule.title}"</span>
         </div>
     </>
   )
