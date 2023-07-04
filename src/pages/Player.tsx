@@ -3,10 +3,18 @@ import { Header } from "./../components/Header"
 import { Video } from "./../components/Video"
 import { Module } from "./../components/Module"
 import { useAppSelector } from "../store"
+import { useCurrentLesson } from "../store/slices/playerSlice"
+import { useEffect } from 'react'
 
 export function Player() {
   const modules = useAppSelector(state => state.player.course.modules)
-  console.log(modules)
+
+  const { currentLesson } = useCurrentLesson()
+
+  useEffect(() => {
+    document.title = `Assistindo ${currentLesson.title}`
+  },[currentLesson])
+  
 
   return (
     <>
